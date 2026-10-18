@@ -457,3 +457,28 @@ body {
         font-size: 1rem;
     }
 }
+
+@media (max-width: 480px) {
+    #key-sig-dropdown {
+        flex: 1 1 0;
+        width: 0;
+        min-width: 0;
+        max-width: none;
+
+        padding: 0.4rem 0.25rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-width: 1px;
+    }
+
+    .controls-left .step-btn {
+        padding: 0.35rem 0.4rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #key-sig-dropdown {
+        font-size: 0.7125rem;
+    }
+}
