@@ -1,3 +1,5 @@
+/* css/style.css */
+
 :root {
     --bg-color: #f8f9fa;
     --card-bg: #ffffff;
@@ -361,10 +363,13 @@ body {
         font-size: 0.85rem;
     }
 
+    /* Main key signature dropdown enlarged by ~80% on mobile view */
     #key-sig-dropdown {
-        font-size: 1.8rem; /* Or adjust based on your base font size */
+        font-size: 1.8rem;
         padding: 12px 16px;
-        transform: scale(1.8); /* Scales the entire element up by roughly 80% */
+        transform: scale(1.8);
         transform-origin: left center;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
