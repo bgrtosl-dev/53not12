@@ -1,6 +1,6 @@
 // sw.js
 
-const CACHE_NAME = 'edo53-pwa-v1.3';
+const CACHE_NAME = 'edo53-pwa-v1.4';
 const ASSETS = [
   './index.html',
   './style.css',
