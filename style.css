@@ -249,32 +249,50 @@ body {
     background: var(--primary-hover);
 }
 
-/* Modal Styling */
+/* Modal Styling (Optimized for iPhone / Mobile Readability) */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .modal-content {
     background: #ffffff;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     text-align: center;
-    max-width: 320px;
-    width: 90%;
+
+    /* Expanded sizing for iPhone/Mobile */
+    width: 92%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    box-sizing: border-box;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.modal-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .qr-code-wrapper {
