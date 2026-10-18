@@ -1,4 +1,7 @@
-/* css/style.css */
+
+/* =========================================
+   Global Styles
+   ========================================= */
 
 :root {
     --bg-color: #f8f9fa;
@@ -14,7 +17,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -26,11 +30,15 @@ body {
     margin: 0 auto;
 }
 
-/* Header Section */
+/* =========================================
+   Header
+   ========================================= */
+
 .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
     background: var(--card-bg);
     padding: 1rem 1.5rem;
     border-radius: 12px;
@@ -46,6 +54,7 @@ body {
 .header-icons {
     display: flex;
     gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 .header-icons button {
@@ -67,13 +76,20 @@ body {
     background: #e9ecef;
 }
 
+/* =========================================
+   Main Layout
+   ========================================= */
+
 .app-container {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-/* Controls Bar Layout */
+/* =========================================
+   Controls Bar
+   ========================================= */
+
 .controls-bar {
     display: flex;
     flex-wrap: wrap;
@@ -86,13 +102,25 @@ body {
     align-items: center;
 }
 
-.controls-left, .controls-right {
+.controls-left,
+.controls-right {
     display: flex;
     gap: 0.5rem;
     align-items: center;
 }
 
-.ctrl-btn, .step-btn, .action-btn {
+.controls-left {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.controls-right {
+    flex: 0 0 auto;
+}
+
+.ctrl-btn,
+.step-btn,
+.action-btn {
     padding: 0.5rem 1rem;
     background: #e9ecef;
     border: 1px solid var(--border-color);
@@ -102,18 +130,40 @@ body {
     transition: all 0.2s;
 }
 
-.ctrl-btn:hover, .step-btn:hover, .action-btn:hover {
+.ctrl-btn:hover,
+.step-btn:hover,
+.action-btn:hover {
     background: #dee2e6;
 }
 
+.step-btn {
+    flex: 0 0 auto;
+}
+
+/* =========================================
+   Key Signature Selector
+   ========================================= */
+
 #key-sig-dropdown {
-    padding: 0.75rem 1.25rem;
+    display: block;
+
+    /* Preferred desktop width */
+    width: 300px;
+    min-width: 220px;
+    max-width: 100%;
+
+    /* Allow flex layouts to size the selector */
+    flex: 1 1 300px;
+
+    padding: 0.75rem 1rem;
     border-radius: 8px;
     border: 2px solid var(--border-color);
     font-size: 1.3rem;
     font-weight: 600;
-    background: white;
+    color: var(--text-color);
+    background: #ffffff;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 #key-sig-dropdown:focus {
@@ -121,10 +171,13 @@ body {
     outline: none;
 }
 
-/* Interactive Keyboard */
+/* =========================================
+   Interactive Keyboard
+   ========================================= */
+
 .keyboard-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
     gap: 0.5rem;
     background: var(--card-bg);
     padding: 1rem;
@@ -151,7 +204,6 @@ body {
     background: #f8f9fa;
 }
 
-/* Green styling for differentiating keys */
 .key-card.differentiating {
     background-color: #e6f4ea;
     border-color: #34a853;
@@ -161,7 +213,6 @@ body {
     color: #137333;
 }
 
-/* Light blue styling for keys with actionable/non-empty alteration labels */
 .key-card.has-choices {
     background-color: #e8f0fe;
     border-color: #4285f4;
@@ -188,7 +239,10 @@ body {
     cursor: pointer;
 }
 
-/* Scales Section */
+/* =========================================
+   Scales Section
+   ========================================= */
+
 .scales-section {
     background: var(--card-bg);
     padding: 1.25rem;
@@ -224,6 +278,7 @@ body {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    min-width: 0;
     overflow-x: auto;
 }
 
@@ -251,30 +306,31 @@ body {
     background: var(--primary-hover);
 }
 
-/* Modal Styling (Optimized for iPhone / Mobile Readability) */
+/* =========================================
+   Modal Styling
+   ========================================= */
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
-    box-sizing: border-box;
 }
 
 .modal-content {
     background: #ffffff;
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
 
-    /* Expanded sizing for iPhone/Mobile */
     width: 92%;
     max-width: 500px;
     max-height: 85vh;
@@ -284,7 +340,6 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    box-sizing: border-box;
 }
 
 .modal-content h3 {
@@ -315,7 +370,10 @@ body {
     text-decoration: underline;
 }
 
-/* iPhone & Mobile Optimizations */
+/* =========================================
+   Mobile Layout
+   ========================================= */
+
 @media (max-width: 480px) {
     body {
         padding: 0.5rem;
@@ -328,6 +386,47 @@ body {
 
     .app-header h1 {
         font-size: 1.1rem;
+    }
+
+    .controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    .controls-left {
+        width: 100%;
+        flex: 1 1 auto;
+        gap: 0.35rem;
+    }
+
+    .controls-left .step-btn {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    #key-sig-dropdown {
+        /*
+         * Use remaining space between the navigation buttons.
+         * min-width: 0 prevents the selector from forcing
+         * the whole row wider than the screen.
+         */
+        width: 0;
+        min-width: 0;
+        flex: 1 1 0;
+        padding: 0.65rem 0.25rem;
+        font-size: 1.1rem;
+    }
+
+    .controls-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .ctrl-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
     }
 
     .scale-row {
@@ -356,20 +455,5 @@ body {
 
     .key-note {
         font-size: 1rem;
-    }
-
-    .ctrl-btn, .step-btn {
-        padding: 0.35rem 0.6rem;
-        font-size: 0.85rem;
-    }
-
-    /* Main key signature dropdown enlarged by ~80% on mobile view */
-    #key-sig-dropdown {
-        font-size: 1.8rem;
-        padding: 12px 16px;
-        transform: scale(1.8);
-        transform-origin: left center;
-        margin-top: 10px;
-        margin-bottom: 10px;
     }
 }
