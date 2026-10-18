@@ -1,0 +1,351 @@
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #212529;
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --border-color: #ced4da;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    padding: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header Section */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.header-icons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.header-icons button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    transition: background 0.2s;
+}
+
+.header-icons button:hover {
+    background: #e9ecef;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Controls Bar Layout */
+.controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    align-items: center;
+}
+
+.controls-left, .controls-right {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.ctrl-btn, .step-btn, .action-btn {
+    padding: 0.5rem 1rem;
+    background: #e9ecef;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.ctrl-btn:hover, .step-btn:hover, .action-btn:hover {
+    background: #dee2e6;
+}
+
+#key-sig-dropdown {
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: white;
+    cursor: pointer;
+}
+
+#key-sig-dropdown:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Interactive Keyboard */
+.keyboard-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.key-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.key-card:hover {
+    border-color: var(--primary-color);
+    background: #f8f9fa;
+}
+
+/* Green styling for differentiating keys */
+.key-card.differentiating {
+    background-color: #e6f4ea;
+    border-color: #34a853;
+}
+
+.key-card.differentiating .key-note {
+    color: #137333;
+}
+
+/* Light blue styling for keys with actionable/non-empty alteration labels */
+.key-card.has-choices {
+    background-color: #e8f0fe;
+    border-color: #4285f4;
+}
+
+.key-card.has-choices .key-note {
+    color: #1967d2;
+}
+
+.key-note {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    pointer-events: none;
+}
+
+.key-select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Scales Section */
+.scales-section {
+    background: var(--card-bg);
+    padding: 1.25rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.scales-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#scales-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.scale-row {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    gap: 0.75rem;
+}
+
+.scale-row:last-child {
+    border-bottom: none;
+}
+
+.scale-notation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    overflow-x: auto;
+}
+
+.scale-staff-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: -2px;
+}
+
+.scale-ksig-btn {
+    padding: 0.4rem 0.6rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    align-self: center;
+}
+
+.scale-ksig-btn:hover {
+    background: var(--primary-hover);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.qr-code-wrapper {
+    padding: 0.5rem;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.modal-url {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    word-break: break-all;
+}
+
+.modal-url:hover {
+    text-decoration: underline;
+}
+
+/* iPhone & Mobile Optimizations */
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .app-header {
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .app-header h1 {
+        font-size: 1.1rem;
+    }
+
+    .scale-row {
+        gap: 0.35rem;
+        padding: 0.25rem 0;
+    }
+
+    .scale-ksig-btn {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.8rem;
+        min-width: 32px;
+        text-align: center;
+    }
+
+    .scale-notation {
+        width: 100%;
+    }
+
+    .scale-staff-title {
+        font-size: 0.8rem;
+    }
+
+    .key-card {
+        padding: 0.5rem 0.25rem;
+    }
+
+    .key-note {
+        font-size: 1rem;
+    }
+
+    .ctrl-btn, .step-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    #key-sig-dropdown {
+        padding: 0.5rem 0.75rem;
+        font-size: 1.1rem;
+        max-width: 130px;
+    }
+}
