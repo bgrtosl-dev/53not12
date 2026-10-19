@@ -12,19 +12,24 @@
 <body>
 <header class="app-header">
     <h1>35 out of 53, not 12</h1>
-    <div class="header-icons">
-        <button id="help-btn" title="Help">?</button>
-        <button id="qr-btn" title="QR Code">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7"/>
-                <rect x="14" y="3" width="7" height="7"/>
-                <rect x="14" y="14" width="7" height="7"/>
-                <path d="M3 14h7v7H3z"/>
-                <path d="M6 6h1v1H6z M17 6h1v1h-1z M17 17h1v1h-1z"/>
-                <path d="M14 10h3 M10 14v3 M14 21h3 M21 10v3"/>
-            </svg>
-        </button>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- MIDI Status Indicator -->
+        <span id="midi-status" style="font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.6rem; border-radius: 6px; background: #e9ecef; color: #495057;">Checking MIDI...</span>
+        
+        <div class="header-icons">
+            <button id="help-btn" title="Help">?</button>
+            <button id="qr-btn" title="QR Code">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <path d="M3 14h7v7H3z"/>
+                    <path d="M6 6h1v1H6z M17 6h1v1h-1z M17 17h1v1h-1z"/>
+                    <path d="M14 10h3 M10 14v3 M14 21h3 M21 10v3"/>
+                </svg>
+            </button>
+        </div>
     </div>
 </header>
 
@@ -102,5 +107,30 @@
 <script src="js/tools.js"></script>
 <script src="js/vxflw_scales.js"></script>
 <script src="js/pwa.js"></script>
+
+<!-- MIDI Support Check Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const statusEl = document.getElementById('midi-status');
+        if (navigator.requestMIDIAccess) {
+            navigator.requestMIDIAccess().then(
+                () => {
+                    statusEl.textContent = 'midi available';
+                    statusEl.style.background = '#d4edda';
+                    statusEl.style.color = '#155724';
+                },
+                () => {
+                    statusEl.textContent = 'midi not available';
+                    statusEl.style.background = '#f8d7da';
+                    statusEl.style.color = '#721c24';
+                }
+            );
+        } else {
+            statusEl.textContent = 'midi not available';
+            statusEl.style.background = '#f8d7da';
+            statusEl.style.color = '#721c24';
+        }
+    });
+</script>
 </body>
 </html>
