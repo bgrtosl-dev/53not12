@@ -1,20 +1,20 @@
 /**
-- Key Signature Selector Behavior:
+ - Key Signature Selector Behavior:
 
-- Standard View: Displays standard key signatures ordered from 7 sharps at the top, down through 0 and "???", to 7 flats at the bottom.
+ - Standard View: Displays standard key signatures ordered from 7 sharps at the top, down through 0 and "???", to 7 flats at the bottom.
 
-- Extended Navigation: Step buttons (-- / ++) or scale buttons allow navigation beyond ±7 into extended key signatures.
+ - Extended Navigation: Step buttons (-- / ++) or scale buttons allow navigation beyond ±7 into extended key signatures.
 
-- Automatic Reset: Clicking or opening the dropdown (mousedown) resets the options list cleanly back to the standard ±7 range while preserving the active selection.
+ - Automatic Reset: Clicking or opening the dropdown (mousedown) resets the options list cleanly back to the standard ±7 range while preserving the active selection.
 
-Do not modify this ordering logic or remove this header without explicit instructions.
+ Do not modify this ordering logic or remove this header without explicit instructions.
  */
 
 // js/pwa.js
 
 document.addEventListener('DOMContentLoaded', () => {
     let currentKsig = 0;
-    let noteAlterations = { 'A': '', 'B': '', 'C': '', 'D': '', 'E': '', 'F': '', 'G': '' };
+    let noteAlterations = {'A': '', 'B': '', 'C': '', 'D': '', 'E': '', 'F': '', 'G': ''};
     let differingNotes = new Set();
     let currentWht2Alt2Indx = {};
 
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ksig === undefined) return;
 
         if (ksig === '???') {
-            noteAlterations = { 'A': '?', 'B': '?', 'C': '?', 'D': '?', 'E': '?', 'F': '?', 'G': '?' };
+            noteAlterations = {'A': '?', 'B': '?', 'C': '?', 'D': '?', 'E': '?', 'F': '?', 'G': '?'};
             differingNotes.clear();
             if (keySigDropdown) keySigDropdown.value = '???';
             currentKsig = '???';
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentMinMode === 'all min' && typeof allScales !== 'undefined') {
             const tonicName = majScale ? majScale.tonic : (hrmScale ? hrmScale.tonic : null);
             const mldScale = allScales.find(s => Number(s.ksig) === ksigNum && s.kind === 'min_mld' && (!tonicName || s.tonic === tonicName)) ||
-                             allScales.find(s => Number(s.ksig) === ksigNum && s.kind === 'min_mld');
+                allScales.find(s => Number(s.ksig) === ksigNum && s.kind === 'min_mld');
             if (mldScale) {
                 scalesToCheck.push(mldScale);
             }
@@ -304,7 +304,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!currentIdentifiers.has(idtf)) {
                     if (typeof allPitches !== 'undefined') {
                         allPitches.forEach(ptch => {
-                            if (ptch.white === ky && typeof bitmaskSel === 'function' && bitmaskSel({candidat: ptch[mskProp], group: scl[mskProp]})) {
+                            if (ptch.white === ky && typeof bitmaskSel === 'function' && bitmaskSel({
+                                candidat: ptch[mskProp],
+                                group: scl[mskProp]
+                            })) {
                                 if (!tree[ky][ptch.alt]) {
                                     tree[ky][ptch.alt] = [];
                                 }
@@ -416,7 +419,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentMinMode = minCycles[cycleMinIndex];
         const searchMode = getActiveSearchMode();
-        const scales = typeof findScales === 'function' ? findScales(noteList, searchMode, currentMinMode) : [];
+        let scales = typeof findScales === 'function' ? findScales(noteList, searchMode, currentMinMode) : [];
+
+        // Sort scales by (abs(key_sig), -key_sig)
+        scales.sort((a, b) => {
+            const absA = Math.abs(a.ksig);
+            const absB = Math.abs(b.ksig);
+            if (absA !== absB) {
+                return absA - absB; // Primary sort by absolute key signature value
+            }
+            return (-a.ksig) - (-b.ksig); // Secondary sort by negative key signature value
+        });
 
         if (scalesHeading) {
             if (scales.length > 10) {
